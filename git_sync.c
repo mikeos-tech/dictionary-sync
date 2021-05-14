@@ -9,6 +9,7 @@ I got this from:
 https://www.thegeekstuff.com/2010/04/inotify-c-program-example/
 https://linuxhint.com/inotify_api_c_languageysi
 */
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -43,11 +44,6 @@ int main( )
     /* opendir() failed for some other reason. */
   }
 
-
-
-
-
-
   /*creating the INOTIFY instance*/
   fd = inotify_init();
 
@@ -55,47 +51,39 @@ int main( )
   if ( fd < 0 ) {
     perror( "inotify_init" );
   }
+  do {
+      /*adding the “/tmp” directory into watch list. Here, the suggestion is to validate the existence of the directory before adding into monitoring list.*/
+      wd = inotify_add_watch( fd, folder_path, IN_CREATE | IN_DELETE | IN_MODIFY );
 
-  /*adding the “/tmp” directory into watch list. Here, the suggestion is to validate the existence of the directory before adding into monitoring list.*/
-  wd = inotify_add_watch( fd, folder_path, IN_CREATE | IN_DELETE | IN_MODIFY );
+      /*read to determine the event change happens on “/tmp” directory. Actually this read blocks until the change event occurs*/ 
 
-  /*read to determine the event change happens on “/tmp” directory. Actually this read blocks until the change event occurs*/ 
+      length = read( fd, buffer, EVENT_BUF_LEN ); 
 
-  length = read( fd, buffer, EVENT_BUF_LEN ); 
+      /*checking for error*/
+      if ( length < 0 ) {
+          perror( "read" );
+      }  
 
-  /*checking for error*/
-  if ( length < 0 ) {
-    perror( "read" );
-  }  
+      /*actually read return the list of change events happens. Here, read the change event one by one and process it accordingly.*/
+      while ( i < length ) {     
+          struct inotify_event *event = ( struct inotify_event * ) &buffer[ i ];
+          if ( event->len ) {
+      	    if(event->mask & IN_MODIFY) {
+		printf("\n\tFile changed: %s.\n", event->name);
+		char command[512];
+		strcpy(command, "cd ");
+		strcat(command, folder_path);
+		strcat(command, " && git add . && git commit -m 'updated' && git push ");
 
-  /*actually read return the list of change events happens. Here, read the change event one by one and process it accordingly.*/
-  while ( i < length ) {     struct inotify_event *event = ( struct inotify_event * ) &buffer[ i ];     if ( event->len ) {
-      if(event->mask & IN_MODIFY) {
-	printf("File changed: %s.\n", event->name);
-      }
-      if ( event->mask & IN_CREATE ) {
-        if ( event->mask & IN_ISDIR ) {
-          printf( "New directory %s created.\n", event->name );
-        }
-        else {
-          printf( "New file %s created.\n", event->name );
-        }
-      }
-      else if ( event->mask & IN_DELETE ) {
-        if ( event->mask & IN_ISDIR ) {
-          printf( "Directory %s deleted.\n", event->name );
-        }
-        else {
-          printf( "File %s deleted.\n", event->name );
-        }
-      }
-    }
-    i += EVENT_SIZE + event->len;
-  }
-  /*removing the “/tmp” directory from the watch list.*/
-   inotify_rm_watch( fd, wd );
+		system(command); 
+      	    }
+   	    i += EVENT_SIZE + event->len;
+          }
+          inotify_rm_watch( fd, wd ); // remove directory from watch list
 
-  /*closing the INOTIFY instance*/
-   close( fd );
+          close( fd ); // close the INOTIFY
+      } 
+  }  while(1); // loop continues
 
+return(0);
 }
