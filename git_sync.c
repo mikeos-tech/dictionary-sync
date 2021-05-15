@@ -24,28 +24,62 @@ https://linuxhint.com/inotify_api_c_languageysi
 
 const char *folder_path = "/home/mike/.vim_spell";
 
-void watch_local_changes(const char *path)
+void watch_remote_changes(const char *path)
 {
+    char branch[120];
+    char local[44];
+    char remote[44];
+    char buffer[1024];
+    char url[1024];
+    FILE *fp;
+
+    char command_branch[40 + strlen(path)];
+    strcpy(command_branch, "cd ");
+    strcat(command_branch, path);
+    strcat(command_branch, " && git rev-parse --abbrev-ref HEAD");
+    fp = popen(command_branch, "r"); // open the command like a file
+    if (fp != NULL) {
+       while (fgets(branch, sizeof(branch), fp) != NULL) {
+           printf("%s", path); // this is just for debugging
+       }
+    }
+    pclose(fp);
+
+    char command_local[30 + strlen(path)];
+    strcpy(command_local, "cd ");
+    strcat(command_local, path);
+    strcat(command_local, " && git rev-parse HEAD");
+    fp = popen(command_branch, "r"); // open the command like a file                                    
+    if (fp != NULL) {
+        while (fgets(local, sizeof(local), fp) != NULL) {
+	    printf("%s", local); // this is just for debugging
+	}
+   }
+   pclose(fp);
+
+   char command_url[24 + strlen(path)];
+   strcpy(command_url, "cd ");
+   strcat(command_url, path);
+   strcat(command_url, " && git ls-remote");
+   fp = popen(command_url, "r"); // open the command like a file                                    
+   if (fp != NULL) {
+       int i = 0;
+       while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+           printf("%s", buffer); // this is just for debugging
+	   if(i == 0) {
+               strcpy(url buffer[5]);
+	       printf("\nURL: %s\n", url);
+	   }
+	   ++i
+       }
+   }
+   pclose(fp);
 
 
 }
 
-int main( )
+void watch_local_changes(const char *path)
 {
-  // Check the folder exists
-  DIR* dir = opendir(folder_path);
-  if (dir) { // Directory exists. */
-    closedir(dir);
-    printf("The folder: '%s' exists.\n", folder_path);
-    watch_local_changes(folder_path);
-  } else if (ENOENT == errno) {
-    printf("The folder: '%s' does not exist.\n", folder_path);
-	return -1;
-  } else {
-    printf("The folder: '%s' can't be accessed.\n", folder_path);
-	return -2; // Can't access folder for some other reason
-  }
-
   do {
       int length, i = 0;
       int fd;
@@ -61,7 +95,7 @@ int main( )
           perror( "inotify_init" );
       }
       // Adding the folder to be watch to the watch list. 
-      wd = inotify_add_watch( fd, folder_path, IN_CREATE | IN_DELETE | IN_MODIFY );
+      wd = inotify_add_watch( fd, path, IN_CREATE | IN_DELETE | IN_MODIFY );
 
       // Read to until a change event happens in the directory, it blocks until something happens. 
       length = read(fd, buffer, EVENT_BUF_LEN); 
@@ -80,11 +114,10 @@ int main( )
           if (event->len) {
       	    if(event->mask & IN_MODIFY) {
 		printf("\n\tFile changed: %s.\n", event->name);
-		char command[(58 + strlen(folder_path))];
+		char command[(58 + strlen(path))];
 		strcpy(command, "cd ");
-		strcat(command, folder_path);
+		strcat(command, path);
 		strcat(command, " && git add . && git commit -m 'updated' && git push &");
-
 		system(command); 
 		printf("\nExecuted git command\n");
       	    }
@@ -94,7 +127,25 @@ int main( )
       }
       inotify_rm_watch(fd, wd); // remove directory from watch list
       close(fd); // close the INOTIFY
+  }  while(1); // loop that doesn't end naturally
+}
 
-  }  while(1); // loop that doesn't end naturally 
-  return(0);
+int main( )
+{
+  // Check the folder exists
+  int retval = 0;
+  DIR* dir = opendir(folder_path);
+  if(dir) { // Directory exists. */
+    closedir(dir);
+    printf("The folder: '%s' exists.\n", folder_path);
+    watch_local_changes(folder_path);
+    retval = 0;
+  } else if (ENOENT == errno) {
+    printf("The folder: '%s' does not exist.\n", folder_path);
+    retval = -1;
+  } else {
+    printf("The folder: '%s' can't be accessed.\n", folder_path);
+    retval = -2; // Can't access folder for some other reason
+  }
+  return retval;
 }
