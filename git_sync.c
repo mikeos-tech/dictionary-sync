@@ -6,6 +6,8 @@ sudo apt install libgit2-dev
 
 gcc git_sync.c -o bin/git_sync
 
+cd .. && gcc git_sync.c -o bin/git_sync && cd bin/ && ./git_sync
+
 I got this from:
 https://www.thegeekstuff.com/2010/04/inotify-c-program-example/
 https://linuxhint.com/inotify_api_c_languageysi
@@ -27,55 +29,80 @@ const char *folder_path = "/home/mike/.vim_spell";
 void watch_remote_changes(const char *path)
 {
     char branch[120];
-    char local[44];
+    char local[1024];
     char remote[44];
-    char buffer[1024];
+    char buffer[2048];
     char url[1024];
     FILE *fp;
 
+    // Read the branch for the current local
     char command_branch[40 + strlen(path)];
     strcpy(command_branch, "cd ");
     strcat(command_branch, path);
     strcat(command_branch, " && git rev-parse --abbrev-ref HEAD");
     fp = popen(command_branch, "r"); // open the command like a file
     if (fp != NULL) {
-       while (fgets(branch, sizeof(branch), fp) != NULL) {
-           printf("%s", path); // this is just for debugging
-       }
+       fgets(branch, sizeof(branch), fp);
     }
     pclose(fp);
 
+    // Read the local head
     char command_local[30 + strlen(path)];
     strcpy(command_local, "cd ");
     strcat(command_local, path);
     strcat(command_local, " && git rev-parse HEAD");
-    fp = popen(command_branch, "r"); // open the command like a file                                    
+    fp = popen(command_local, "r"); // open the command like a file                                    
     if (fp != NULL) {
-        while (fgets(local, sizeof(local), fp) != NULL) {
-	    printf("%s", local); // this is just for debugging
-	}
+        fgets(local, sizeof(local), fp);
+        if(local[(strlen(local) - 1)] == '\n') { // git seems to append a newline character to the end of this
+	  local[(strlen(local) - 1)] = NULL;
+        }
    }
    pclose(fp);
 
-   char command_url[24 + strlen(path)];
+   // get the URL for the remote repository 
+   char command_url[44 + strlen(path)];
    strcpy(command_url, "cd ");
    strcat(command_url, path);
-   strcat(command_url, " && git ls-remote");
+   strcat(command_url, " && git config --get remote.origin.url");
    fp = popen(command_url, "r"); // open the command like a file                                    
    if (fp != NULL) {
-       int i = 0;
-       while (fgets(buffer, sizeof(buffer), fp) != NULL) {
-           printf("%s", buffer); // this is just for debugging
-	   if(i == 0) {
-               strcpy(url buffer[5]);
-	       printf("\nURL: %s\n", url);
-	   }
-	   ++i
-       }
+      fgets(url, sizeof(url), fp);
+      if(url[(strlen(url) - 1)] == '\n') { // git seems to append a newline character to the end of this
+	  url[(strlen(url) - 1)] = NULL;
+      }
    }
    pclose(fp);
 
+   // read the remote head that relates to the current local head and trim extraneous characters from end
+   char command_remote[4048 + strlen(path)];
+   strcpy(command_remote, "cd ");
+   strcat(command_remote, path);
+   strcat(command_remote, " && git ls-remote ");
+   strcat(command_remote, url);
+   strcat(command_remote, " -h ");
+   strcat(command_remote, branch);
+   fp = popen(command_remote, "r"); // open the command like a file                                    
+   if (fp != NULL) {
+       fgets(buffer, sizeof(buffer), fp);
+       int i = 0;
+       while((buffer[i] != '\t') && (i < strlen(buffer))) { // The character between the two elements is a tab
+	   remote[i] = buffer[i];
+	   ++i;
+       }
+       remote[i] = NULL;
+   }
+   pclose(fp);
 
+   printf("\nlocal:  %s\nRemote: %s\n", local, remote);
+
+   if(strcmp(local, remote) != 0) {
+   	char command[34 + strlen(path)];
+   	strcpy(command, "cd ");
+   	strcat(command, path);
+   	strcat(command, " && git config pull.rebase false");
+	system(command);
+   }
 }
 
 void watch_local_changes(const char *path)
@@ -138,6 +165,7 @@ int main( )
   if(dir) { // Directory exists. */
     closedir(dir);
     printf("The folder: '%s' exists.\n", folder_path);
+    watch_remote_changes(folder_path);
     watch_local_changes(folder_path);
     retval = 0;
   } else if (ENOENT == errno) {
