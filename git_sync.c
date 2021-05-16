@@ -24,7 +24,12 @@ https://linuxhint.com/inotify_api_c_languageysi
 #define EVENT_SIZE  ( sizeof (struct inotify_event) )
 #define EVENT_BUF_LEN     ( 1024 * ( EVENT_SIZE + 16 ) )
 
-const char *folder_path = "/home/mike/.vim_spell";
+void clear_return(char *string)
+{
+      if(string[(strlen(string) - 1)] == '\n') { // git seems to append a newline character to the end of this
+	  string[(strlen(string) - 1)] = 0;
+      }
+}
 
 void watch_remote_changes(const char *path)
 {
@@ -54,9 +59,7 @@ void watch_remote_changes(const char *path)
     fp = popen(command_local, "r"); // open the command like a file                                    
     if (fp != NULL) {
         fgets(local, sizeof(local), fp);
-        if(local[(strlen(local) - 1)] == '\n') { // git seems to append a newline character to the end of this
-	  local[(strlen(local) - 1)] = NULL;
-        }
+	clear_return(local);
    }
    pclose(fp);
 
@@ -68,9 +71,7 @@ void watch_remote_changes(const char *path)
    fp = popen(command_url, "r"); // open the command like a file                                    
    if (fp != NULL) {
       fgets(url, sizeof(url), fp);
-      if(url[(strlen(url) - 1)] == '\n') { // git seems to append a newline character to the end of this
-	  url[(strlen(url) - 1)] = NULL;
-      }
+      clear_return(url);
    }
    pclose(fp);
 
@@ -90,11 +91,11 @@ void watch_remote_changes(const char *path)
 	   remote[i] = buffer[i];
 	   ++i;
        }
-       remote[i] = NULL;
+       remote[i] = 0;
    }
    pclose(fp);
 
-   printf("\nlocal:  %s\nRemote: %s\n", local, remote);
+//   printf("\nlocal:  %s\nRemote: %s\n", local, remote);
 
    if(strcmp(local, remote) != 0) {
    	char command[34 + strlen(path)];
@@ -126,31 +127,28 @@ void watch_local_changes(const char *path)
 
       // Read to until a change event happens in the directory, it blocks until something happens. 
       length = read(fd, buffer, EVENT_BUF_LEN); 
-      printf("\nHave read buffer\n");
 
       /*checking for error*/
       if (length < 0) {
           perror( "read" );
       }  
 
-      printf("\nBefore Inner loop - length: %d - i: %d\n", length, i);
       /*actually read return the list of change events happens. Here, read the change event one by one and process it accordingly.*/
       while (i < length) {    
-	     printf("\nstart of loop - lenght: %d - i: %d\n", length, i); 
           struct inotify_event *event = ( struct inotify_event * ) &buffer[ i ];
           if (event->len) {
       	    if(event->mask & IN_MODIFY) {
-		printf("\n\tFile changed: %s.\n", event->name);
+//		printf("\n\tFile changed: %s.\n", event->name);
 		char command[(58 + strlen(path))];
 		strcpy(command, "cd ");
 		strcat(command, path);
 		strcat(command, " && git add . && git commit -m 'updated' && git push &");
 		system(command); 
-		printf("\nExecuted git command\n");
+//		printf("\nExecuted git command\n");
       	    }
    	    i += EVENT_SIZE + event->len;
           }
-	  printf("\nStill in inner loop - i: %d\n", i);
+//	  printf("\nStill in inner loop - i: %d\n", i);
       }
       inotify_rm_watch(fd, wd); // remove directory from watch list
       close(fd); // close the INOTIFY
@@ -161,10 +159,27 @@ int main( )
 {
   // Check the folder exists
   int retval = 0;
+  char config_path[20] = "/etc/git_sync.conf";
+  char folder_path[1024];
+  FILE *config;
+
+  config = fopen(config_path, "r");
+  if(config) {
+      if(fgets(folder_path, 1024, config) == NULL) {
+          printf("Configuration file needs to point to the git repository you want to keep synchronised!\n");
+          return -1;
+      }
+      clear_return(folder_path);
+      fclose(config); 
+  } else {
+      printf("Configuration file not found: %s\nThis file needs to point to the git repository you want to keep synchronised!\n", config_path);
+      return(-1);
+  }
+
   DIR* dir = opendir(folder_path);
   if(dir) { // Directory exists. */
     closedir(dir);
-    printf("The folder: '%s' exists.\n", folder_path);
+//    printf("The folder: '%s' exists.\n", folder_path);
     watch_remote_changes(folder_path);
     watch_local_changes(folder_path);
     retval = 0;
