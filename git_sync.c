@@ -6,7 +6,7 @@ sudo apt install libgit2-dev
 
 gcc git_sync.c -o bin/git_sync
 
-cd .. && gcc git_sync.c -o bin/git_sync && cd bin/ && ./git_sync
+cd .. && gcc -pthread git_sync.c -o bin/git_sync && cd bin/ && ./git_sync
 
 I got this from:
 https://www.thegeekstuff.com/2010/04/inotify-c-program-example/
@@ -20,6 +20,8 @@ https://linuxhint.com/inotify_api_c_languageysi
 #include <dirent.h>
 // #include <sys/inotify.h>
 #include <linux/inotify.h>
+#include <unistd.h>
+#include <pthread.h>
 
 #define EVENT_SIZE  ( sizeof (struct inotify_event) )
 #define EVENT_BUF_LEN     ( 1024 * ( EVENT_SIZE + 16 ) )
@@ -31,8 +33,10 @@ void clear_return(char *string)
       }
 }
 
-void watch_remote_changes(const char *path)
+void* watch_remote_changes(void *path)
 {
+    do {
+    sleep(60);
     char branch[120];
     char local[1024];
     char remote[44];
@@ -102,11 +106,12 @@ void watch_remote_changes(const char *path)
    	strcpy(command, "cd ");
    	strcat(command, path);
    	strcat(command, " && git config pull.rebase false");
-	system(command);
+    	system(command);
    }
+} while(1);
 }
 
-void watch_local_changes(const char *path)
+void* watch_local_changes(void *path)
 {
   do {
       int length, i = 0;
@@ -163,6 +168,9 @@ int main( )
   char folder_path[1024];
   FILE *config;
 
+  pthread_t local;
+  pthread_t remote;
+
   config = fopen(config_path, "r");
   if(config) {
       if(fgets(folder_path, 1024, config) == NULL) {
@@ -180,8 +188,10 @@ int main( )
   if(dir) { // Directory exists. */
     closedir(dir);
 //    printf("The folder: '%s' exists.\n", folder_path);
-    watch_remote_changes(folder_path);
-    watch_local_changes(folder_path);
+    int rem = pthread_create(&remote, NULL, watch_remote_changes, folder_path);
+    int loc = pthread_create(&local, NULL, watch_local_changes, folder_path);
+//    watch_remote_changes(folder_path);
+//    watch_local_changes(folder_path);
     retval = 0;
   } else if (ENOENT == errno) {
     printf("The folder: '%s' does not exist.\n", folder_path);
