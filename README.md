@@ -62,7 +62,7 @@ To create/edit it use the following command:
 
       sudo nano /etc/git_sync.conf 
 
-The path can point any were providing it works as far as the application that work on it are concerned and the permissions work. It needs to have the trailing slash (/) for the program to work.
+The path in the file can point any were, providing it works as far as any application that work on it are concerned and the permissions allow what you need. It needs to have the trailing slash (/) for my program to work.
 
 ---
 
