@@ -3,7 +3,7 @@
 
 I wanted to synchronise the *vim* personal dictionary so that it would be the same on all the computers that I use.  I work on a server, a desktop computer and a laptop (that connects over a VPN).
 
-A searching suggested that some used *Dropbox* to provide this service, but as I didn't wish to use it I searched for Open Source alternatives.
+Searching suggested that dome use *Dropbox* to provide this service, but as I didn't wish to use it I search for Open Source alternatives.
 
 There were a number of solutions that required the use of a GUI environment to set them up, but as I wanted to use it on my server, which I access without a monitor and don't have a GUI installed, these weren't possible.  I found one command line option, which I experimented with, but could get to work.
 
