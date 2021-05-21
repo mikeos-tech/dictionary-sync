@@ -1,0 +1,13 @@
+Description=Dictionary Sync
+
+[Service]
+User=mike
+Type=simple
+ExecStart=/usr/local/bin/dic_sync
+Restart=on-failure
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+
