@@ -80,18 +80,17 @@ Paste the text below into it and save it:
 
 5. Execute the following commands:
 
-     *sudo systemctl daemon-reload*
+     sudo systemctl daemon-reload
+     sudo systemctl start  dic_sync.service 
+     sudo systemctl status dic_sync.service
+     sudo systemctl enable dic_sync.service
 
-     *sudo systemctl start  dic_sync.service* 
-
-     *sudo systemctl status dic_sync.service*
-
-     *sudo systemctl enable dic_sync.service*
-
-It this runs without error the program will run whilst the computer it is installed on is running.
+It these run without error the program will be run and continue to run whilst the computer it is installed on, is running.
 
 6.I can be disabled using the command:
 
-      *sudo systemctl disable example.service*
+      sudo systemctl disable example.service
+
+This works for me and is hear to be used and modified as required.  It probably isn't the best solution for this problem.  I'm open to suggestions on how it can be improved.
 
 
