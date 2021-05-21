@@ -19,7 +19,7 @@ You need to have *git* installed as it uses the *git* executable, rather than us
 
 ---
 
-You need to create a folder, you can call it what you want but I called mine *.vim_spell* and initialise it as a *git* repository. You need to link it with an on-line *git* repository and configure it so you can use *ssh* for synchronisation (this won't work if you manually have to enter your username and password).
+You need to create a folder, you can call it what you want but I called mine *.vim_spell* and initialise it as a *git* repository. You need to link it with an on-line *git* repository and configure it so you can use *ssh* for synchronisation.  This program  won't work if you manually have to enter a username and password!
 
 ---
 
@@ -34,7 +34,7 @@ Because I was wanting to synchronise very specific files I added a *.gitignore* 
      !.gitignore
      en.utf-8.add.spl
 
-The single * excludes everything, the next two lines include the specific files they name and the last line specifically excludes the binary version of the dictionary.
+The single * excludes everything, the next two lines include the specific files they name and the last line specifically excludes the binary version of the dictionary (yes, I know the * will also cause this to be ignored).
 
 ---
 
