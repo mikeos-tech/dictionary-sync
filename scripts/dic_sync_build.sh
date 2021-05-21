@@ -16,6 +16,9 @@ git add dic_sync.c
 scp ~/projects/git_sync_project/bin/dic_sync mike@192.168.2.26:~
 sudo cp ~/projects/git_sync_project/bin/dic_sync /usr/local/bin
 sudo chmod 777 /usr/local/bin/dic_sync
-sudo systemctl edit /usr/local/bin/dic_sync
+cd /etc/systemd/system
+sudo vim dic_sync.service
 sudo systemctl daemon-reload
-sudo systemctl enable dic_sync
+sudo systemctl start dic_sync.service 
+sudo systemctl status dic_sync.service
+sudo systemctl enable dic_sync.service
