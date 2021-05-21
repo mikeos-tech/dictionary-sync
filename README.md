@@ -15,7 +15,7 @@ It should work synchronising any set of files that are text based (else git won'
 
 You need to have git installed as it uses the git executable, rather than using git libraries.
 
-You need to create a folder, you can call it what you want but I called mine .vim_spell and initialise it as a git repository. You need to link it with an on-line git repository and configure it so you can use ssh for synchronisation (this won't work if you manually have to enter your username and password).
+You need to create a folder, you can call it what you want but I called mine *.vim_spell* and initialise it as a git repository. You need to link it with an on-line git repository and configure it so you can use ssh for synchronisation (this won't work if you manually have to enter your username and password).
 
 You need to set up your application, in my case the vim editor, to store the files you wish in the folder you created.
 
@@ -35,27 +35,32 @@ Because of file permissions you will need to use *sudo* or be logged on as root 
 I will give example command lines, using the nano editor which is considered simple to use.
 
 1. To build/compile the program you need to have the *gcc compiler installed.*
+
      *gcc -pthread -o dic_sync dic_sync.c*
+
  - This will create the executable file *dic_sync* in the current folder.
 
 2.  You need to set up a file in */etc* called *git_sync.conf* that tells the application were to find the git repository that contains the relevant files.
----
+
 It needs to contains a line similar to this:
+
       */home/mike/.vim_spell/*
 
       *sudo /etc/git_sync.conf* 
 
 The path can point any were providing it works as far as the application that work on it are concerned and the permissions work. It needs to have the trailing slash (/) for the program to work.
----
 
 3. You need to put the executable file in the folder */usr/local/bin/* with the commands:
+
      *sudo mv dic_sync /usr/local/bin/*
+
  - Give the program the permissions to be executed.
+
      *sudo chmod 777 /usr/local/bin/dic_sync*
 
 4. Create the unit file for the program to be run in the background as a service
-     *sudo nano /etc/systemd/system/dic_sync.service*
 
+     *sudo nano /etc/systemd/system/dic_sync.service*
 ---
 Paste the text below into it and save it:
 
@@ -74,14 +79,19 @@ Paste the text below into it and save it:
 ---
 
 5. Execute the following commands:
+
      *sudo systemctl daemon-reload*
+
      *sudo systemctl start  dic_sync.service* 
+
      *sudo systemctl status dic_sync.service*
+
      *sudo systemctl enable dic_sync.service*
 
 It this runs without error the program will run whilst the computer it is installed on is running.
 
 6.I can be disabled using the command:
+
       *sudo systemctl disable example.service*
 
 
