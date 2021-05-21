@@ -1,11 +1,11 @@
 # dic_sync
-I wanted to synchronise the vim personal dictionary so that it would be the same on all the computers that I use.  I work on a server, a desktop computer and a laptop (that connects over a VPN).
+I wanted to synchronise the *vim* personal dictionary so that it would be the same on all the computers that I use.  I work on a server, a desktop computer and a laptop (that connects over a VPN).
 
 A searching suggested that some used Dropbox to provide this service, but as I didn't wish to use it I searched for Open Source alternatives.
 
-There were a number of solutions that required the use of a GUI environment to set them up, but as I wanted to use it on my server these weren't possible.  I found one command line option, which I experimented with, but could get to work.
+There were a number of solutions that required the use of a GUI environment to set them up, but as I wanted to use it on my server, which I access without a monitor and don't have a GUI installed, these weren't possible.  I found one command line option, which I experimented with, but could get to work.
 
-It occurred to me that git could be used for this purpose, but that I would need to automate it so I developed this little application.
+It occurred to me that git could be used for this purpose, but that I would need to automate it so I developed this application to achieve this.
 
 It works for me (so far), it hasn't been tested elsewhere, though it doesn't have a lot of dependencies. I have it running on Ubuntu server and two instances of Kubuntu.
 
@@ -18,12 +18,15 @@ You need to create a folder, you can call it what you want but I called mine .vi
 You need to set up your application, in my case the vim editor, to store the files you wish in the folder you created.
 
 Because I was wanting to syncronise very specific files I added a *.gitignore* file within the git repository with the following content:
-**---
-*
-!en.utf-8.add
-!.gitignore
-en.utf-8.add.spl
----**
+
+**
+---
+- *
+- !en.utf-8.add
+- !.gitignore
+- en.utf-8.add.spl
+---
+**
 
 The single * excludes everthing, the next two lines include the specific files they name and the last line specifically excludes the binary version of the dictionary.
 
