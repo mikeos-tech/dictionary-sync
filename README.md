@@ -17,18 +17,16 @@ You need to create a folder, you can call it what you want but I called mine .vi
 
 You need to set up your application, in my case the vim editor, to store the files you wish in the folder you created.
 
-Because I was wanting to syncronise very specific files I added a *.gitignore* file within the git repository with the following content:
+Because I was wanting to synchronise very specific files I added a *.gitignore* file within the git repository with the following content:
 
-**
 ---
-- *
-- !en.utf-8.add
-- !.gitignore
-- en.utf-8.add.spl
+  *
+  !en.utf-8.add
+  !.gitignore
+  en.utf-8.add.spl
 ---
-**
 
-The single * excludes everthing, the next two lines include the specific files they name and the last line specifically excludes the binary version of the dictionary.
+The single * excludes everything, the next two lines include the specific files they name and the last line specifically excludes the binary version of the dictionary.
 
 Because of file permissions you will need to use *sudo* or be logged on as root to carry out most of these steps.
 
