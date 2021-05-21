@@ -1,23 +1,27 @@
 /*H*******************************************************************
-  * FILENAME :        fmcompres.c
+  * FILENAME :        dic_sync.c
   *
   * DESCRIPTION :
-  *       File compression and decompression routines.
+  *       Watches a local folder for file changes, pushes those changes 
+  *       to Git Hub and when the program is running on multiple machines
+  *       compares the GitHub repository with the local repository and
+  *       pulls down later versions.
   *
   * PUBLIC FUNCTIONS :
   *
   * NOTES :
-  *       These functions are a part of the FM suite;
-  *       See IMS FM0121 for detailed description.
+  *       This should be run on multiple machines each with a copy of 
+  *       the vim dictionary set up in a folder pointed to by the 
+  *       configuration file. Each dictionary containing folder needs
+  *       to be set up as a repository of a git repository configured 
+  *       to use ssh so that the pushing and pulling of the dictionary
+  *       files can happen without user intervention.
   *
-  *       Copyright A.N.Other Co. 1990, 1995.  All rights reserved.
-  *
-  * AUTHOR :    Arthur Other        START DATE :    16 Jan 99
+  * AUTHOR :    Mike O'Shea        DATE :    21 May 2021
   *
   * CHANGES :
   *
   * REF NO  VERSION DATE    WHO     DETAIL
-  * F21/33  A.03.04 22Jan99 JR      Function CalcHuffman corrected
   *
   * H*/
 
