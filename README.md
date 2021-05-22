@@ -57,10 +57,12 @@ As this repository isn't intended to be of interest to anyone else it doesn't ne
 
 2. Because I was wanting to synchronise very specific files I added a *.gitignore* file within the git repository with the following content:
 
-     *
-     !en.utf-8.add
-     !.gitignore
-     en.utf-8.add.spl
+
+      *
+      !en.utf-8.add
+      !.gitignore
+      en.utf-8.add.spl
+
 
 The single * excludes everything, the next two lines include the specific files they name and the last line specifically excludes the binary version of the dictionary (yes, I know the * will also cause this to be ignored).
 
@@ -74,6 +76,8 @@ The single * excludes everything, the next two lines include the specific files 
 
        git add .
        git commit -m 'Initial commit'
+
+---
 
 5. You now need to set up an online *git* repository, making it private if you can.  You need set it up so you can use *ssh* to push and pull from it and take a copy of the URL you would use for this.
 
@@ -93,8 +97,9 @@ You will then be able to push subsiqent changes using the command.
 
 
       git push
-
-    
+      git push -u origin main
+   
+--- 
 
 6. To build/compile the program you need to have the *gcc* compiler installed.
 
