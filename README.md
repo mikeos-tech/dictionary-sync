@@ -23,7 +23,7 @@ It should work synchronising any set of files that are text based (else git won'
 
 ---
 
-I use the *.gitignore* file to ensure that only the text version of the dictionary is synchronised, so I have mapped a function key in *vim* that will regenerate the binary version of the dictionary when I press it.
+I use the *.gitignore* file, to ensure that only the text version of the dictionary is synchronised, so I have mapped a function key in *vim* that will regenerate the binary version of the dictionary when I press it.
 
      :map  <F4> :mkspell! ~/.vim_spell/en.utf-8.add
 
@@ -31,7 +31,7 @@ The above line is added to my *.vimrc* file along with the configuration for the
 
 ---
 
-You need to create a folder, you can call it what you want but I called mine *.vim_spell* and initialise it as a *git* repository. You need to link it with an on-line *git* repository and configure it so you can use *ssh* for synchronisation.  This program  won't work if you manually have to enter a username and password!
+You need to create a folder, you can call it what you want, but I called mine *.vim_spell* and initialise it as a *git* repository. You then need to link it with an on-line *git* repository and configure it, so you use a  *ssh* key for synchronisation.  This program  won't work if you manually have to enter a username and password!
 
 ---
 
