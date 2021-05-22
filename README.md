@@ -69,7 +69,7 @@ This will create the executable file called *dic_sync* in the folder were you ru
 
 ---
 
-2.  You need to set up a file in */etc* called *git_sync.conf* that tells the application were to find the git repository that contains the relevant files.
+2.  You need to set up a file in */etc* called *git_sync.conf* that tells the application were to find the *git* repository that contains the relevant files.
 
 It needs to contains a line similar to this:
 
@@ -83,17 +83,19 @@ The path in the file can point any were, providing it works as far as any applic
 
 ---
 
-3. You need to put the executable file in the folder */usr/local/bin/* with the commands:
+3. You need to put the executable file in the folder */usr/local/bin/* with the command:
 
      sudo mv dic_sync /usr/local/bin/
 
- - Give the program the permissions to be executed.
+---
+
+4. program the permissions to be executed.
 
      sudo chmod 777 /usr/local/bin/dic_sync
 
 ---
 
-4. Create the unit file for the program to be run in the background as a service
+5. Create the unit file for the program to be run in the background as a service
 
      sudo nano /etc/systemd/system/dic_sync.service
 
@@ -113,7 +115,7 @@ Paste the text below into it and save it:
      WantedBy=multi-user.target
 ---
 
-5. Execute the following commands:
+6. Execute the following commands:
 
       sudo systemctl daemon-reload
       sudo systemctl start  dic_sync.service 
@@ -124,9 +126,11 @@ It these run without error the program will be run and continue to run whilst th
 
 ---
 
-6.I can be disabled using the command:
+7. I can be disabled using the command:
 
       sudo systemctl disable example.service
+
+---
 
 This works for me and is here to be used and modified as required.  It probably isn't the best solution for this problem.  It is more a quick and dirty solution rather than something for wider distribution I'm open to suggestions on how it can be improved.
 
