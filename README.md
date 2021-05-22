@@ -18,7 +18,7 @@ It has worked for me (so far), though it hasn't been tested elsewhere.  It doesn
   
 I currently have it running on *Ubuntu server* and two instances of *Kubuntu*.
 
-I often work both on my local computer and over *ssh* on the server and will be editing files on both and the dictionaries are kept synchronised.
+I often work, both on my local computer and over *ssh* on the server and will be editing files on both and the dictionaries are kept synchronised.
 
 It should work synchronising any set of files that are text based (else git won't be able to merge them) and that can be stored in a single folder structure.
 
@@ -30,7 +30,7 @@ I use the *.gitignore* file, to ensure that only the text version of the diction
 
 The above line is added to my *.vimrc* file along with the configuration for the way I use the dictionary.
 
-When the **F4** key is pressed, the command becomes the current command and pressing Enter executes it and the dictionary will then be up to date.
+When the **F4** key is pressed, the command mapped to the key becomes the current command and pressing Enter executes it. This creates a binary dictionary file from the text file, that is up to date.
 
 ---
 
