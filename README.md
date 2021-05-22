@@ -34,15 +34,23 @@ When the **F4** key is pressed, the command becomes the current command and pres
 
 ---
 
-You need to create a folder, you can call it what you want, but I called mine *.vim_spell* and initialise it as a *git* repository. You then need to link it with an on-line *git* repository and configure it, so you use a  *ssh* key for synchronisation.  This program  won't work if you manually have to enter a username and password!
+##Setting it up
+
+Because of file permissions you will need to use *sudo* or be logged on as *root* to carry out most of these steps.
+
+I will give example command lines, using the *nano* editor which is considered simple to use.
 
 ---
 
-You need to set up your application, in my case the *vim* editor, to store the files you wish in the folder you created.
+1. You need to create a folder, you can call it what you want, but I called mine *.vim_spell* and initialise it as a *git* repository. You then need to link it with an on-line *git* repository and configure it, so you use a  *ssh* key for synchronisation.  This program  won't work if you manually have to enter a username and password!
 
 ---
 
-Because I was wanting to synchronise very specific files I added a *.gitignore* file within the git repository with the following content:
+2. You need to set up your application, in my case the *vim* editor, to store the files you wish in the folder you created.
+
+---
+
+3. Because I was wanting to synchronise very specific files I added a *.gitignore* file within the git repository with the following content:
 
      *
      !en.utf-8.add
@@ -53,23 +61,17 @@ The single * excludes everything, the next two lines include the specific files 
 
 ---
 
-Because of file permissions you will need to use *sudo* or be logged on as *root* to carry out most of these steps.
-
-I will give example command lines, using the *nano* editor which is considered simple to use.
-
----
-
-1. To build/compile the program you need to have the *gcc* compiler installed.
+4. To build/compile the program you need to have the *gcc* compiler installed.
 
 
-     gcc -pthread -o dic_sync dic_sync.c
+         gcc -pthread -o dic_sync dic_sync.c
 
 
 This will create the executable file called *dic_sync* in the folder were you run the command, which needs to contain the *dic_sync.c* source file.
 
 ---
 
-2.  You need to set up a file in */etc* called *git_sync.conf* that tells the application were to find the *git* repository that contains the relevant files.
+5.  You need to set up a file in */etc* called *git_sync.conf* that tells the application were to find the *git* repository that contains the relevant files.
 
 It needs to contains a line similar to this:
 
@@ -83,19 +85,19 @@ The path in the file can point any were, providing it works as far as any applic
 
 ---
 
-3. You need to put the executable file in the folder */usr/local/bin/* with the command:
+6. You need to put the executable file in the folder */usr/local/bin/* with the command:
 
      sudo mv dic_sync /usr/local/bin/
 
 ---
 
-4. program the permissions to be executed.
+7. program the permissions to be executed.
 
      sudo chmod 777 /usr/local/bin/dic_sync
 
 ---
 
-5. Create the unit file for the program to be run in the background as a service
+8. Create the unit file for the program to be run in the background as a service
 
      sudo nano /etc/systemd/system/dic_sync.service
 
@@ -115,7 +117,7 @@ Paste the text below into it and save it:
      WantedBy=multi-user.target
 ---
 
-6. Execute the following commands:
+9. Execute the following commands:
 
       sudo systemctl daemon-reload
       sudo systemctl start  dic_sync.service 
@@ -126,7 +128,7 @@ It these run without error the program will be run and continue to run whilst th
 
 ---
 
-7. I can be disabled using the command:
+10. I can be disabled using the command:
 
       sudo systemctl disable example.service
 
