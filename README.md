@@ -3,7 +3,7 @@
 
 I wanted to synchronise the *vim* personal dictionary so that it would be the same on all the computers that I use.  I work on a server, a desktop computer and a laptop (that connects over a VPN).
 
-Searching suggested that dome use *Dropbox* to provide this service, but as I didn't wish to use it, I search for Open Source alternatives.
+Searching suggested that some use *Dropbox* to provide this service, but as I didn't wish to use it, I search for Open Source alternatives.
 
 There were a number of solutions that required the use of a GUI environment to set them up, but as I wanted to use it on a server, where I don't have a GUI installed, these weren't possible.  I found one command line option, which I experimented with, but could get to work.
 
@@ -13,9 +13,13 @@ I wanted to:
 1. Push the dictionary up to the central repository every time the local file changed.
 2. Pull the dictionary down to the workstation every time the server version changed.
 
-It has works for me (so far), it hasn't been tested elsewhere, though it doesn't have a lot of dependencies. I have it running on *Ubuntu server* and two instances of *Kubuntu*.
+It has worked for me (so far), though it hasn't been tested elsewhere.  It doesn't have a lot of dependencies, the c code is just standard functionality, without additional libraries and the rest is dependant on *git*.  You need to have *git* installed as it uses the *git* executable, rather than using *git* libraries.
+  
+I currently have it running on *Ubuntu server* and two instances of *Kubuntu*.
 
 I often work both on my local computer and over *ssh* on the server and will be editing files on both and the dictionaries are kept synchronised.
+
+It should work synchronising any set of files that are text based (else git won't be able to merge them) and that can be stored in a single folder structure.
 
 ---
 
@@ -24,14 +28,6 @@ I use the *.gitignore* file to ensure that only the text version of the dictiona
      :map  <F4> :mkspell! ~/.vim_spell/en.utf-8.add
 
 The above line is added to my *.vimrc* file along with the configuration for the way I use the dictionary.
-
----
-
-It should work synchronising any set of files that are text based (else git won't be able to merge them) and that can be stored in a single folder structure.
-
----
-
-You need to have *git* installed as it uses the *git* executable, rather than using *git* libraries.
 
 ---
 
