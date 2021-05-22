@@ -1,4 +1,5 @@
-# dic_sync
+# Dictionary Sync
+
 ## Work in Progress
 
 I wanted to synchronise the *vim* personal dictionary so that it would be the same on all the computers that I use.  I work on a server, a desktop computer and a laptop (that connects over a VPN).
