@@ -34,11 +34,11 @@ When the **F4** key is pressed, the command mapped to the key becomes the curren
 
 ---
 
-##Setting it up
+## Setting it up
 
 Because of file permissions you will need to use *sudo* or be logged on as *root* to carry out most of these steps.
 
-I will give example command lines, using the *nano* editor which is considered simple to use.
+I will give example command lines, using the *nano* editor which is considered simple to use. Though if you are setting this up to work with *vim* you would use that as your editor.
 
 ---
 
