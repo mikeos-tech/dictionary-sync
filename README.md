@@ -53,7 +53,7 @@ The single * excludes everything, the next two lines include the specific files 
 
 Because of file permissions you will need to use *sudo* or be logged on as *root* to carry out most of these steps.
 
-I will give example command lines, using the nano editor which is considered simple to use.
+I will give example command lines, using the *nano* editor which is considered simple to use.
 
 ---
 
@@ -61,7 +61,7 @@ I will give example command lines, using the nano editor which is considered sim
 
      gcc -pthread -o dic_sync dic_sync.c
 
- - This will create the executable file *dic_sync* in the current folder.
+This will create the executable file called *dic_sync* in the folder were you should run the command which should contain the *dic_sync.c* source file.
 
 ---
 
