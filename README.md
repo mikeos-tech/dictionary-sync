@@ -3,13 +3,29 @@
 
 I wanted to synchronise the *vim* personal dictionary so that it would be the same on all the computers that I use.  I work on a server, a desktop computer and a laptop (that connects over a VPN).
 
-Searching suggested that dome use *Dropbox* to provide this service, but as I didn't wish to use it I search for Open Source alternatives.
+Searching suggested that dome use *Dropbox* to provide this service, but as I didn't wish to use it, I search for Open Source alternatives.
 
-There were a number of solutions that required the use of a GUI environment to set them up, but as I wanted to use it on my server, which I access without a monitor and don't have a GUI installed, these weren't possible.  I found one command line option, which I experimented with, but could get to work.
+There were a number of solutions that required the use of a GUI environment to set them up, but as I wanted to use it on a server, where I don't have a GUI installed, these weren't possible.  I found one command line option, which I experimented with, but could get to work.
 
-It occurred to me that *git* could be used for this purpose, but that I would need to automate it so I developed this application to achieve this.
+It occurred to me that *git* could be used for this purpose, but that I would need to provide the automation to make it work, which led to the development of  this application.
 
-It works for me (so far), it hasn't been tested elsewhere, though it doesn't have a lot of dependencies. I have it running on *Ubuntu server* and two instances of *Kubuntu*.
+I wanted to:
+1. Push the dictionary up to the central repository every time the local file changed.
+2. Pull the dictionary down to the workstation every time the server version changed.
+
+It has works for me (so far), it hasn't been tested elsewhere, though it doesn't have a lot of dependencies. I have it running on *Ubuntu server* and two instances of *Kubuntu*.
+
+I often work both on my local computer and over *ssh* on the server and will be editing files on both and the dictionaries are kept synchronised.
+
+---
+
+I use the *.gitignore* file to ensure that only the text version of the dictionary is synchronised, so I have mapped a function key in *vim* that will regenerate the binary version of the dictionary when I press it.
+
+     :map  <F4> :mkspell! ~/.vim_spell/en.utf-8.add
+
+The above line is added to my *.vimrc* file along with the configuration for the way I use the dictionary.
+
+---
 
 It should work synchronising any set of files that are text based (else git won't be able to merge them) and that can be stored in a single folder structure.
 
