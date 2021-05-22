@@ -26,9 +26,11 @@ It should work synchronising any set of files that are text based (else git won'
 
 I use the *.gitignore* file, to ensure that only the text version of the dictionary is synchronised, so I have mapped a function key in *vim* that will regenerate the binary version of the dictionary when I press it.
 
-     :map  <F4> :mkspell! ~/.vim_spell/en.utf-8.add
+        :map  <F4> :mkspell! ~/.vim_spell/en.utf-8.add
 
 The above line is added to my *.vimrc* file along with the configuration for the way I use the dictionary.
+
+When the **F4** key is pressed, the command becomes the current command and pressing Enter executes it and the dictionary will then be up to date.
 
 ---
 
