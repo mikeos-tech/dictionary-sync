@@ -132,13 +132,13 @@ To create/edit it use the following command:
 
       sudo nano /etc/git_sync.conf 
 
-Add the path to the folder you created that contains the local *git* repository. 
+Add the path to the folder you created, that contains the local *git* repository as a single line, with a trailing slash (/) to the file and save and exit. 
 
 ---
 
 10. Create the unit file for the program to be run in the background as a service
 
-     sudo nano /etc/systemd/system/dic_sync.service
+       sudo nano /etc/systemd/system/dic_sync.service
 
 Paste the text below into it and save it:
 
@@ -158,10 +158,10 @@ Paste the text below into it and save it:
 
 11. Execute the following commands:
 
-      sudo systemctl daemon-reload
-      sudo systemctl start  dic_sync.service 
-      sudo systemctl status dic_sync.service
-      sudo systemctl enable dic_sync.service
+       sudo systemctl daemon-reload
+       sudo systemctl start  dic_sync.service 
+       sudo systemctl status dic_sync.service
+       sudo systemctl enable dic_sync.service
 
 It these run without error the program will be run and continue to run whilst the computer it is installed on, is running.
 
