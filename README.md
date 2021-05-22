@@ -138,7 +138,10 @@ Add the path to the folder you created, that contains the local *git* repository
 
 10. Create the unit file for the program to be run in the background as a service
 
-       sudo nano /etc/systemd/system/dic_sync.service
+
+     sudo nano /etc/systemd/system/dic_sync.service
+
+
 
 Paste the text below into it and save it:
 
@@ -158,10 +161,12 @@ Paste the text below into it and save it:
 
 11. Execute the following commands:
 
-       sudo systemctl daemon-reload
-       sudo systemctl start  dic_sync.service 
-       sudo systemctl status dic_sync.service
-       sudo systemctl enable dic_sync.service
+
+    sudo systemctl daemon-reload
+    sudo systemctl start  dic_sync.service 
+    sudo systemctl status dic_sync.service
+    sudo systemctl enable dic_sync.service
+
 
 It these run without error the program will be run and continue to run whilst the computer it is installed on, is running.
 
@@ -169,7 +174,9 @@ It these run without error the program will be run and continue to run whilst th
 
 12. I can be disabled using the command:
 
-      sudo systemctl disable example.service
+
+    sudo systemctl disable example.service
+
 
 ---
 
