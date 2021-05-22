@@ -61,9 +61,11 @@ I will give example command lines, using the *nano* editor which is considered s
 
 1. To build/compile the program you need to have the *gcc* compiler installed.
 
+
      gcc -pthread -o dic_sync dic_sync.c
 
-This will create the executable file called *dic_sync* in the folder were you should run the command which should contain the *dic_sync.c* source file.
+
+This will create the executable file called *dic_sync* in the folder were you run the command, which needs to contain the *dic_sync.c* source file.
 
 ---
 
