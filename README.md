@@ -1,8 +1,8 @@
-# Dictionary Sync
+#Dictionary Sync
 
 ## Work in Progress
 
-I wanted to synchronise the *vim* personal dictionary so that it would be the same on all the computers that I use.  I work on a server, a desktop computer and a laptop (that connects over a VPN).
+I wanted to synchronise the *vim* personal dictionary so that it would be the same on all the computers that I use.  I work on a server, a desktop computer and a laptop and would like the dictionary containing the words I've added to be the same for each instance.
 
 Searching suggested that some use *Dropbox* to provide this service, but as I didn't wish to use it, I search for Open Source alternatives.
 
