@@ -15,7 +15,7 @@ I wanted to:
 2. Pull the dictionary down to the workstation every time the server version wasn't the same as the local version.
 
 It has worked for me (so far), though it hasn't been tested more widely.  It doesn't have a lot of dependencies, the c code is just standard functionality, without additional libraries and the rest is dependant on *git*.  You need to have *git* installed as it uses the *git* executable, rather than using *git* libraries.
-  
+
 I currently have it running on *Ubuntu server* and two instances of *Kubuntu*.
 
 I often work, both on my local computer and over *ssh* on the server and will be editing files on both and the dictionaries are kept synchronised.
@@ -98,8 +98,8 @@ You will then be able to push subsequent changes you make, if you need to manual
 
 
       git push
-   
---- 
+
+---
 
 6. To build/compile the program you need to have the *gcc* compiler installed.
 
@@ -163,12 +163,10 @@ Paste the text below into it and save it:
 
 11. Execute the following commands:
 
-
        sudo systemctl daemon-reload
-       sudo systemctl start  dic_sync.service 
+       sudo systemctl start  dic_sync.service
        sudo systemctl status dic_sync.service
        sudo systemctl enable dic_sync.service
-
 
 It these run without error the program will be run and continue to run whilst the computer it is installed on, is running.
 
@@ -176,12 +174,8 @@ It these run without error the program will be run and continue to run whilst th
 
 12. I can be disabled using the command:
 
-
     sudo systemctl disable example.service
-
 
 ---
 
 This works for me and is here to be used and modified as required.  It probably isn't the best solution for this problem.  It is more a quick and dirty solution rather than something for wider distribution I'm open to suggestions on how it can be improved.
-
-
