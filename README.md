@@ -83,10 +83,9 @@ The single * excludes everything, the next two lines include the specific files 
 
 5. You now need to set up an online *git* repository, making it private if you can.  You need set it up so you can use *ssh* to push and pull from it and take a copy of the URL you would use for this.
 
-Connect the local repository to the remote one using the following command with the URL you just copied/noted in place of the word *URL*. This command needs to be executed within the folder you created.
- 
+Connect the local repository to the remote one using the following command with the URL you just copied/noted in place of the word *URL*. This command needs to be executed within the folder you created and will connect the local and the remote repositories.
 
-       git remote add origin *URL*
+       git remote add origin URL
 
 
 Push the content of the folder up to the online repository with the following command.
