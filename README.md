@@ -94,7 +94,7 @@ Push the content of the folder up to the online repository with the following co
       git push -u origin main
 
 
-You will then be able to push subsequent changes you make using the command.
+You will then be able to push subsequent changes you make, if you need to manually using the command.
 
 
       git push
@@ -117,7 +117,7 @@ This will create the executable file called *dic_sync* in the folder were you ru
 
 ---
 
-8. program the permissions to be executed.
+8. You need to give the program the right security permissions to allow it to be executed.
 
        sudo chmod 777 /usr/local/bin/dic_sync
 
