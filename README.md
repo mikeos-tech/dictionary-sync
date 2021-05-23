@@ -77,7 +77,9 @@ The single * excludes everything, the next two lines include the specific files 
 
 ---
 
-4. As you have a basic set of files in the repository run the following commands within your folder:
+4. You will now have at least one files in the folder, so you can add any files to the repository. If *vim* hasn't actually created a dictionary file yet, the process will add it automatically, once it has been created.
+
+Execute the following commands within the folder:
 
      git add .
      git commit -m 'Initial commit'
