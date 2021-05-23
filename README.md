@@ -60,7 +60,8 @@ As this repository isn't intended to be of interest to anyone else it doesn't ne
 
 ---
 
-2. Because I was wanting to synchronise only very specific files I added a *.gitignore* file within the git repository.
+2. Because I was wanting to synchronise only very specific files, I added a *.gitignore* file to the git repository.
+
 I included the following content: 
 
       *
