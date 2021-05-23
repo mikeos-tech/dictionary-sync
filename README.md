@@ -24,7 +24,7 @@ It should work synchronising any set of files that are text based (else git won'
 
 ---
 ## Configuring the Application (*vim*)
-In my *.vimrc* file I have the following settings that set the language for the word lists that I use, that tell *vim* where to find/create the *spellfile* which is the personal dictionary, the list of words that I would like to be considered valid spelling.  The last line turns the spelling on by default, rather than leaving it off.
+In my *.vimrc* file I have the following settings that set the language for the word lists that I use, that tell *vim* where to find/create the *spellfile* which is the personal dictionary. The last line turns the spelling on by default, rather than leaving it off.
 
        set spelllang=en_gb
        set spellfile=$HOME/.vim_spell/en.utf-8.add
@@ -50,12 +50,12 @@ I will set out the steps you need to go through to set up the synchronised folde
 
 1. You need to have a folder to put the files in you wish to have synchronised, you can use an existing folder or create a new one and call it anything you want.  I called mine *.vim_spell* and will use that in the examples.  You could use a folder that already has a *git* repository, providing it can be used similarly to  way the way this works.
 
-Create or move into the folder you wish to use and go into it with a terminal.  If that folder isn't a *git* repository you will need to use the following commands to create one.  The second command names the branch (there will only be one) *main*
+Create or move into the folder you wish to use and go into it with a terminal.  If that folder isn't a *git* repository you will need to use the following commands to create one.  The second command names the branch *main* (there will only be one).
 
       git init
       git branch -m main
 
-As this repository isn't intended to be of interest to anyone else it doesn't need anything like a *readme.md* file.
+As this repository isn't intended to be of interest to anyone else it doesn't need a *readme.md* file.
 
 ---
 
@@ -70,7 +70,7 @@ The single * excludes everything, the next two lines include the specific files 
 
 ---
 
-3. Next you need to set up your application, in my case the *vim* editor, to store the files you wish in the folder you created.
+3. Next you need to set up your application, in my case the *vim* editor, to store the files you wish to have in the folder to be synchronised.  I have explained how to set up the spell checker in *vim* earlier in this document, so you need to have done that, or any similar configuration before you move on from this point.
 
 ---
 
