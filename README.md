@@ -26,13 +26,13 @@ It should work synchronising any set of files that are text based (else git won'
 ## Configuring the Application (*vim*)
 In my *.vimrc* file I have the following settings that set the language for the word lists that I use, that tell *vim* where to find/create the *spellfile* which is the personal dictionary. The last line turns the spelling on by default, rather than leaving it off.
 
-       set spelllang=en_gb
-       set spellfile=$HOME/.vim_spell/en.utf-8.add
-       set spell
+     set spelllang=en_gb
+     set spellfile=$HOME/.vim_spell/en.utf-8.add
+     set spell
 
 *vim* keeps a text file containing the list of words, but uses that to build a binary version of the dictionary that it can read more efficiently.  The binary file has the extension *.spl*.  I use a *.gitignore* file within the repository, to ensure that only the text version of the dictionary is synchronised, so I have mapped a function key in *vim* that will regenerate the binary version of the dictionary when I press it. I explain the content of the *.gitignore* file later in the instructions.
 
-        :map  <F4> :mkspell! ~/.vim_spell/en.utf-8.add
+     :map  <F4> :mkspell! ~/.vim_spell/en.utf-8.add
 
 The above line is also included in my *.vimrc* file.  It means that when the **F4** key is pressed, the command mapped to the key becomes the current command and pressing Enter executes it. This creates a binary dictionary file from the text file, that is up to date.
 
@@ -52,8 +52,8 @@ I will set out the steps you need to go through to set up the synchronised folde
 
 Create or move into the folder you wish to use and go into it with a terminal.  If that folder isn't a *git* repository you will need to use the following commands to create one.  The second command names the branch *main* (there will only be one).
 
-      git init
-      git branch -m main
+     git init
+     git branch -m main
 
 As this repository isn't intended to be of interest to anyone else it doesn't need a *readme.md* file.
 
@@ -61,10 +61,10 @@ As this repository isn't intended to be of interest to anyone else it doesn't ne
 
 2. Because I was wanting to synchronise very specific files I added a *.gitignore* file within the git repository with the following content:
 
-       *
-       !en.utf-8.add
-       !.gitignore
-       en.utf-8.add.spl
+     *
+     !en.utf-8.add
+     !.gitignore
+     en.utf-8.add.spl
 
 The single * excludes everything, the next two lines include the specific files they name and the last line specifically excludes the binary version of the dictionary (yes, I know the * will also cause this to be ignored).
 
@@ -76,8 +76,8 @@ The single * excludes everything, the next two lines include the specific files 
 
 4. As you have a basic set of files in the repository run the following commands within your folder:
 
-       git add .
-       git commit -m 'Initial commit'
+     git add .
+     git commit -m 'Initial commit'
 
 ---
 
@@ -85,26 +85,26 @@ The single * excludes everything, the next two lines include the specific files 
 
 Connect the local repository to the remote one using the following command with the URL you just copied/noted in place of the word *URL*. This command needs to be executed within the folder you created and will connect the local and the remote repositories.
 
-       git remote add origin URL
+     git remote add origin URL
 
 
 Push the content of the folder up to the online repository with the following command.
 
 
-      git push -u origin main
+     git push -u origin main
 
 
 You will then be able to push subsequent changes you make, if you need to manually using the command.
 
 
-      git push
+     git push
 
 ---
 
 6. To build/compile the program you need to have the *gcc* compiler installed.
 
 
-         gcc -pthread -o dic_sync dic_sync.c
+     gcc -pthread -o dic_sync dic_sync.c
 
 
 This will create the executable file called *dic_sync* in the folder were you run the command, which needs to contain the *dic_sync.c* source file.
@@ -113,13 +113,13 @@ This will create the executable file called *dic_sync* in the folder were you ru
 
 7. You need to put the executable file in the folder */usr/local/bin/* with the command:
 
-       sudo mv dic_sync /usr/local/bin/
+      sudo mv dic_sync /usr/local/bin/
 
 ---
 
 8. You need to give the program the right security permissions to allow it to be executed.
 
-       sudo chmod 777 /usr/local/bin/dic_sync
+     sudo chmod 777 /usr/local/bin/dic_sync
 
 
 ---
@@ -128,11 +128,11 @@ This will create the executable file called *dic_sync* in the folder were you ru
 
 It needs to contains a line similar to this:
 
-      /home/mike/.vim_spell/
+     /home/mike/.vim_spell/
 
 To create or edit this configuration file use this command:
 
-      sudo nano /etc/git_sync.conf 
+     sudo nano /etc/git_sync.conf 
 
 Add the path to the folder you created, that contains the local *git* repository as a single line, with a trailing slash (**/**) to the file and save and exit. 
 
@@ -163,10 +163,10 @@ Paste the text below into it and save it:
 
 11. Execute the following commands:
 
-       sudo systemctl daemon-reload
-       sudo systemctl start  dic_sync.service
-       sudo systemctl status dic_sync.service
-       sudo systemctl enable dic_sync.service
+     sudo systemctl daemon-reload
+     sudo systemctl start  dic_sync.service
+     sudo systemctl status dic_sync.service
+     sudo systemctl enable dic_sync.service
 
 It these run without error the program will be run and continue to run whilst the computer it is installed on, is running.
 
@@ -174,7 +174,7 @@ It these run without error the program will be run and continue to run whilst th
 
 12. I can be disabled using the command:
 
-    sudo systemctl disable example.service
+     sudo systemctl disable example.service
 
 ---
 
