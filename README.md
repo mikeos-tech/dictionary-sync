@@ -94,11 +94,10 @@ Push the content of the folder up to the online repository with the following co
       git push -u origin main
 
 
-You will then be able to push subsiqent changes using the command.
+You will then be able to push subsequent changes you make using the command.
 
 
       git push
-      git push -u origin main
    
 --- 
 
