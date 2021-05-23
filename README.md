@@ -130,11 +130,11 @@ It needs to contains a line similar to this:
 
       /home/mike/.vim_spell/
 
-To create/edit it use the following command:
+To create or edit this configuration file use this command:
 
       sudo nano /etc/git_sync.conf 
 
-Add the path to the folder you created, that contains the local *git* repository as a single line, with a trailing slash (/) to the file and save and exit. 
+Add the path to the folder you created, that contains the local *git* repository as a single line, with a trailing slash (**/**) to the file and save and exit. 
 
 ---
 
