@@ -164,10 +164,14 @@ Paste the text below into it and save it:
 11. Execute the following commands:
 
 
-    sudo systemctl daemon-reload
-    sudo systemctl start  dic_sync.service 
-    sudo systemctl status dic_sync.service
-    sudo systemctl enable dic_sync.service
+     sudo systemctl daemon-reload
+
+     sudo systemctl start  dic_sync.service 
+
+     sudo systemctl status dic_sync.service
+
+     sudo systemctl enable dic_sync.service
+
 
 
 It these run without error the program will be run and continue to run whilst the computer it is installed on, is running.
