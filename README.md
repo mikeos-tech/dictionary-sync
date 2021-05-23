@@ -23,18 +23,22 @@ I often work, both on my local computer and over *ssh* on the server and will be
 It should work synchronising any set of files that are text based (else git won't be able to merge them) and that can be stored in a single folder structure.
 
 ---
+## Configuring the Application (*vim*)
+In my *.vimrc* file I have the following settings that set the language for the word lists that I use, that tell *vim* where to find/create the *spellfile* which is the personal dictionary, the list of words that I would like to be considered valid spelling.  The last line turns the spelling on by default, rather than leaving it off.
+
+       set spelllang=en_gb
+       set spellfile=$HOME/.vim_spell/en.utf-8.add
+       set spell
 
 I use the *.gitignore* file, to ensure that only the text version of the dictionary is synchronised, so I have mapped a function key in *vim* that will regenerate the binary version of the dictionary when I press it.
 
         :map  <F4> :mkspell! ~/.vim_spell/en.utf-8.add
 
-The above line is added to my *.vimrc* file along with the configuration for the way I use the dictionary.
-
-When the **F4** key is pressed, the command mapped to the key becomes the current command and pressing Enter executes it. This creates a binary dictionary file from the text file, that is up to date.
+The above line is also included in my *.vimrc* file.  It means that when the **F4** key is pressed, the command mapped to the key becomes the current command and pressing Enter executes it. This creates a binary dictionary file from the text file, that is up to date.
 
 ---
 
-## Setting it up
+## Setting up the synchronisation
 
 Because of  *Linux* permissions you will need to use *sudo* or be logged on as *root* to run most of the commands I suggest.
 
