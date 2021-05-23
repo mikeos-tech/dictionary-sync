@@ -24,6 +24,7 @@ It should work synchronising any set of files that are text based (else git won'
 
 ---
 ## Configuring the Application (*vim*)
+
 In my *.vimrc* file I have the following settings that set the language for the word lists that I use, that tell *vim* where to find/create the *spellfile* which is the personal dictionary. The last line turns the spelling on by default, rather than leaving it off.
 
      set spelllang=en_gb
