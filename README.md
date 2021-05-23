@@ -88,15 +88,11 @@ Connect the local repository to the remote one using the following command with 
 
      git remote add origin URL
 
-
 Push the content of the folder up to the online repository with the following command.
-
 
      git push -u origin main
 
-
 You will then be able to push subsequent changes you make, if you need to manually using the command.
-
 
      git push
 
@@ -104,9 +100,7 @@ You will then be able to push subsequent changes you make, if you need to manual
 
 6. To build/compile the program you need to have the *gcc* compiler installed.
 
-
      gcc -pthread -o dic_sync dic_sync.c
-
 
 This will create the executable file called *dic_sync* in the folder were you run the command, which needs to contain the *dic_sync.c* source file.
 
@@ -121,7 +115,6 @@ This will create the executable file called *dic_sync* in the folder were you ru
 8. You need to give the program the right security permissions to allow it to be executed.
 
      sudo chmod 777 /usr/local/bin/dic_sync
-
 
 ---
 
@@ -141,10 +134,7 @@ Add the path to the folder you created, that contains the local *git* repository
 
 10. Create the unit file for the program to be run in the background as a service
 
-
      sudo nano /etc/systemd/system/dic_sync.service
-
-
 
 Paste the text below into it and save it:
 
@@ -160,6 +150,7 @@ Paste the text below into it and save it:
 
      [Install] 
      WantedBy=multi-user.target
+
 ---
 
 11. Execute the following commands:
