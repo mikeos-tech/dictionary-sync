@@ -1,4 +1,4 @@
-#Dictionary Sync
+# Dictionary Sync
 
 ## Work in Progress
 
