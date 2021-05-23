@@ -62,7 +62,7 @@ As this repository isn't intended to be of interest to anyone else it doesn't ne
 
 2. Because I was wanting to synchronise very specific files I added a *.gitignore* file within the git repository with the following content: 
 
-Testing
+\ 
 
       *
       !en.utf-8.add
