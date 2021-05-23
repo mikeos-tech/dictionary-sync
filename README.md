@@ -30,7 +30,7 @@ In my *.vimrc* file I have the following settings that set the language for the 
        set spellfile=$HOME/.vim_spell/en.utf-8.add
        set spell
 
-I use the *.gitignore* file, to ensure that only the text version of the dictionary is synchronised, so I have mapped a function key in *vim* that will regenerate the binary version of the dictionary when I press it.
+*vim* keeps a text file containing the list of words, but uses that to build a binary version of the dictionary that it can read more efficiently.  The binary file has the extension *.spl*.  I use a *.gitignore* file within the repository, to ensure that only the text version of the dictionary is synchronised, so I have mapped a function key in *vim* that will regenerate the binary version of the dictionary when I press it. I explain the content of the *.gitignore* file later in the instructions.
 
         :map  <F4> :mkspell! ~/.vim_spell/en.utf-8.add
 
