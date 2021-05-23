@@ -58,6 +58,8 @@ Create or move into the folder you wish to use and go into it with a terminal.  
 
 As this repository isn't intended to be of interest to anyone else it doesn't need a *readme.md* file.
 
+Testing
+
 ---
 
 2. Because I was wanting to synchronise very specific files I added a *.gitignore* file within the git repository with the following content: 
