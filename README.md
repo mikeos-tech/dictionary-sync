@@ -205,11 +205,13 @@ Setting up the first computer includes creating things like the local and remote
 
 ### 1. Pull down the onm-line Repository
 
-The first step in this process is to get a copy of the on-line *git* repository onto the additional machines you wish to use it on. *git* provides a command for this, that will bring down a copy ready for use. Because I called the on-line repository something different to the folder, I needed to rename the folder. Alternatively you could just include the different path in the program configuration file.
+The first step in this process is to get a copy of the on-line *git* repository onto all the additional machines you wish to use this functionality on. *git* provides a command for this, that will bring down a copy ready for use.
 
-You need to either be using the same *ssh* key on the machine you are adding it or set up additional *ssh* keys on the on-line *git* repository.
+Because I called the on-line repository something different to the name for the folder I wished to use, I needed to rename the folder. Alternatively you could just include the different folder path in the program configuration file, so it reflects the folder on the machine.
 
-The URL element of the command below needs to be replaced with the path you used at stage
+You need to have the same *ssh* key available on all the machine, or set up additional *ssh* keys in the on-line *git* repository. This software can only work automatically, if a user name and password don't need to be entered.
+
+The URL element of the command below needs to be replaced with the path you made a note of and used at stage 5.
 
      git clone URL
 
