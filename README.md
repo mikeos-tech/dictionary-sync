@@ -49,7 +49,9 @@ I will set out the steps you need to go through to set up the synchronised folde
 
 ---
 
-1. You need to have a folder to put the files in you wish to have synchronised, you can use an existing folder or create a new one and call it anything you want.  I called mine *.vim_spell* and will use that in the examples.  You could use a folder that already has a *git* repository, providing it can be used similarly to  way the way this works.
+### 1. Making a folder a local Git Repository
+
+You need to have a folder to put the files in you wish to have synchronised, you can use an existing folder or create a new one and call it anything you want.  I called mine *.vim_spell* and will use that in the examples.  You could use a folder that already has a *git* repository, providing it can be used similarly to  way the way this works.
 
 Create or move into the folder you wish to use and go into it with a terminal.  If that folder isn't a *git* repository you will need to use the following commands to create one.  The second command names the branch *main* (there will only be one).
 
@@ -60,7 +62,9 @@ As this repository isn't intended to be of interest to anyone else it doesn't ne
 
 ---
 
-2. Because I was wanting to synchronise only very specific files, I added a *.gitignore* file to the git repository.
+### 2. Managing the files in the Repository
+
+Because I was wanting to synchronise only very specific files, I added a *.gitignore* file to the git repository.
 
 I included the following content: 
 
@@ -73,7 +77,9 @@ The single * excludes everything, the next two lines include the specific files 
 
 ---
 
-3. Next you need to set up your application, in my case the *vim* editor, to store the files you wish to have in the folder to be synchronised.  I have explained how to set up the spell checker in *vim* earlier in this document, so you need to have done that, or any similar configuration before you move on from this point.
+### 3. Setup your Application
+
+Next you need to set up your application, in my case the *vim* editor, to store the files you wish to have in the folder to be synchronised.  I have explained how to set up the spell checker in *vim* earlier in this document, so you need to have done that, or any similar configuration before you move on from this point.
 
 ---
 
@@ -163,7 +169,7 @@ Paste the text below into it and save it:
 
 ---
 
-11. Once you have created the unit file you can tell set it up to run automatically, every time the computer starts.
+11. Once you have created the unit file you can set it up to run automatically, every time the computer starts.
 
 To do this run the following commands:
 
