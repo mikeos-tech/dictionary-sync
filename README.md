@@ -215,6 +215,10 @@ The URL element of the command below needs to be replaced with the path you made
 
      git clone URL
 
+If you need to rename the folder you would use *mv* or move command:
+
+     mv current_folder_name new_folder_name
+
 ---
 
 ### 2. Setup Applications.
