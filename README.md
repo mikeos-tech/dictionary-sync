@@ -94,7 +94,7 @@ Execute the following commands within the folder:
 
 ---
 
-### 5. An on-line Repository
+### 5. Going on-line with the Repository
 
 You now need to set up an online *git* repository, making it private if you can.  You need set it up so you can use *ssh* to push and pull from it and take a copy of the URL you would use for this.
 
@@ -112,7 +112,7 @@ You will then be able to push subsequent changes you make, if you need to manual
 
 ---
 
-### 6. Creating the Program
+### 6. Building the Program
 
 To build/compile the program you need to have the *gcc* compiler installed.
 
@@ -122,7 +122,7 @@ This will create the executable file called *dic_sync* in the folder were you ru
 
 ---
 
-### 7. Locating the Program and permissions
+### 7. Giving the Program a home and permissions
 
 You need to put the executable file in the folder */usr/local/bin/* with the command:
 
@@ -150,7 +150,9 @@ Add the path to the folder you created, that contains the local *git* repository
 
 ---
 
-10. It is possible to run the command within a *Linux* shell/terminal on each of the machines, only when you want to keep the files synchronised, but to do this you would need to remember to do it and would have a terminal open that wouldn't be usable just showing occasional messages when it did something.
+### 9. How the Program runs
+
+It is possible to run the command within a *Linux* shell/terminal on each of the machines, only when you want to keep the files synchronised, but to do this you would need to remember to get it running and would have a terminal open that wouldn't be usable just showing occasional messages when it did something.
 
 Running it as a service, is the term that is used to describe running it automatically in the background, so you need not be aware it is running.
 
@@ -177,7 +179,9 @@ Paste the text below into it and save it:
 
 ---
 
-11. Once you have created the unit file you can set it up to run automatically, every time the computer starts.
+### 10. Starting it running
+
+Once you have created the unit file you can set it up to run automatically, every time the computer starts.
 
 To do this run the following commands:
 
@@ -195,3 +199,4 @@ It can be disabled using the command:
 ---
 
 This works for me and is here to be used and modified as required.  It probably isn't the best solution for this problem.  It is more a quick and dirty solution rather than something for wider distribution I'm open to suggestions on how it can be improved.
+
