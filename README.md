@@ -203,7 +203,7 @@ Setting up the first computer includes creating things like the local and remote
 
 ---
 
-### 1. Pull down the onm-line Repository
+### 1. Pull down the on-line Repository
 
 The first step in this process is to get a copy of the on-line *git* repository onto all the additional machines you wish to use this functionality on. *git* provides a command for this, that will bring down a copy ready for use.
 
@@ -214,6 +214,24 @@ You need to have the same *ssh* key available on all the machine, or set up addi
 The URL element of the command below needs to be replaced with the path you made a note of and used at stage 5.
 
      git clone URL
+
+---
+
+### 2. Setup Applications.
+
+You need to configure any applications that you want to use the *git* repository folder as was done at Stage 3, on the first machine.
+
+---
+
+### 3. Build the Program
+
+This is Step 6 above, though you can either complete step 6 on this machine or alternatively copy the program file from the other machine.
+
+---
+
+### 4. The rest of the Steps
+
+You now need to follow Steps 7 to 10, to complete the process.
 
 ---
 This works for me and is here to be used and modified as required.  It probably isn't the best solution for this problem.  It is more a quick and dirty solution rather than something for wider distribution I'm open to suggestions on how it can be improved.
