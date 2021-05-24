@@ -58,6 +58,8 @@ Create or move into the folder you wish to use and go into it with a terminal.  
      git init
      git branch -m main
 
+A branch in *git* is a version controlled set of data, in a software project you might have different branches for different versions of software, but as I only want a consistent dictionary it is likely there will only be one branch.
+
 As this repository isn't intended to be of interest to anyone else it doesn't need a *readme.md* file.
 
 ---
