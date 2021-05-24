@@ -166,9 +166,7 @@ Paste the text below into it and save it:
 
 It these run without error the program will be run and continue to run whilst the computer it is installed on, is running.
 
----
-
-12. I can be disabled using the command:
+It can be disabled using the command:
 
      sudo systemctl disable example.service
 
