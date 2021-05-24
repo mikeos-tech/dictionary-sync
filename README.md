@@ -45,7 +45,7 @@ Because of  *Linux* permissions you will need to use *sudo* or be logged on as *
 
 I give examples of commands that you need to execute in a terminal. The examples will include using the *nano* editor which is considered simple to use. Though if you are setting this up to work with *vim* I suggest you use that.
 
-I will set out the steps you need to go through to set up the synchronised folders, some of these steps only need to take place on one machine, the first one you set up. At the end I will detail the steps that you only need to carry on the additional machines.
+I will set out the steps you need to go through to set up the synchronised folders, some of these steps need only to take place on one machine, the first one you set up. At the end I will detail the steps that you need to carry out on the additional machines.
 
 ---
 
