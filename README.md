@@ -96,9 +96,11 @@ Execute the following commands within the folder:
 
 ### 5. Going on-line with the Repository
 
-You now need to set up an online *git* repository, making it private if you can.  You need set it up so you can use *ssh* to push and pull from it and take a copy of the URL you would use for this.
+You now need to set up an online *git* repository, making it private if you can.  You need set it up so you can use *ssh* to push and pull from it and take a copy of the **URL** you would use for this. You will also need to use this **URL** for setting up additional machines.
 
-Connect the local repository to the remote one using the following command with the URL you just copied/noted in place of the word *URL*. This command needs to be executed within the folder you created and will connect the local and the remote repositories.
+I only suggest making the repository private to keep things tidy and avoid it appearing searches. I would not expect a personal dictionary would be of real interest to anyone or come with any privacy issues, unless you spell check your password file? :-).  If you use this idea for anything other than trivial files you would need to think about the security of the files.
+
+Connect the local repository to the remote one using the following command with the **URL** you just copied/noted in place of the word **URL**. This command needs to be executed within the folder you created and will connect the local and the remote repositories.
 
      git remote add origin URL
 
@@ -209,9 +211,9 @@ The first step in this process is to get a copy of the on-line *git* repository 
 
 Because I called the on-line repository something different to the name I gave the folder, I needed to rename the folder, it is a good idea to keep things consistent! Alternatively you could just include the different folder path in the program configuration file, so it reflects the folder on the machine.
 
-You need to have the same *ssh* key available on all the machine, or set up additional *ssh* keys in the on-line *git* repository. This software can only work automatically, if a user name and password don't need to be entered.
+You need to have the same *ssh* key available on all the machine, or set up additional *ssh* keys in the on-line *git* repository. This software can only work automatically, if the on-line repository doesn't need to prompt for a user name and password.
 
-The URL element of the command below needs to be replaced with the path you made a note of and used at stage 5.
+The **URL** element of the command below needs to be replaced with the path you made a note of and used at stage 5.
 
      git clone URL
 
