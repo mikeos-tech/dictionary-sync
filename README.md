@@ -83,7 +83,9 @@ Next you need to set up your application, in my case the *vim* editor, to store 
 
 ---
 
-4. You will now have at least one files in the folder, so you can add any files to the repository. If *vim* hasn't actually created a dictionary file yet, the process will add it automatically, once it has been created.
+### 4. Adding to the Repository
+
+You will now have at least one files in the folder, so you can add any files to the repository. If *vim* hasn't actually created a dictionary file yet, the process will add it automatically, once it has been created.
 
 Execute the following commands within the folder:
 
@@ -92,7 +94,9 @@ Execute the following commands within the folder:
 
 ---
 
-5. You now need to set up an online *git* repository, making it private if you can.  You need set it up so you can use *ssh* to push and pull from it and take a copy of the URL you would use for this.
+### 5. An on-line Repository
+
+You now need to set up an online *git* repository, making it private if you can.  You need set it up so you can use *ssh* to push and pull from it and take a copy of the URL you would use for this.
 
 Connect the local repository to the remote one using the following command with the URL you just copied/noted in place of the word *URL*. This command needs to be executed within the folder you created and will connect the local and the remote repositories.
 
@@ -108,7 +112,9 @@ You will then be able to push subsequent changes you make, if you need to manual
 
 ---
 
-6. To build/compile the program you need to have the *gcc* compiler installed.
+### 6. Creating the Program
+
+To build/compile the program you need to have the *gcc* compiler installed.
 
      gcc -pthread -o dic_sync dic_sync.c
 
@@ -116,19 +122,21 @@ This will create the executable file called *dic_sync* in the folder were you ru
 
 ---
 
-7. You need to put the executable file in the folder */usr/local/bin/* with the command:
+### 7. Locating the Program and permissions
+
+You need to put the executable file in the folder */usr/local/bin/* with the command:
 
       sudo mv dic_sync /usr/local/bin/
 
----
-
-8. You need to give the program the right security permissions to allow it to be executed.
+You need to give the program the right security permissions to allow it to be executed.
 
      sudo chmod 777 /usr/local/bin/dic_sync
 
 ---
 
-9.  You need to set up a file in */etc* called *git_sync.conf* that tells the application were to find the *git* repository that contains the relevant files.
+### 8. Configuring the Program
+
+You need to set up a file in */etc* called *git_sync.conf* that tells the application were to find the *git* repository that contains the relevant files.
 
 It needs to contains a line similar to this:
 
