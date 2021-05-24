@@ -207,7 +207,7 @@ Setting up the first computer includes creating things like the local and remote
 
 The first step in this process is to get a copy of the on-line *git* repository onto all the additional machines you wish to use this functionality on. *git* provides a command for this, that will bring down a copy ready for use.
 
-Because I called the on-line repository something different to the name for the folder I wished to use, I needed to rename the folder. Alternatively you could just include the different folder path in the program configuration file, so it reflects the folder on the machine.
+Because I called the on-line repository something different to the name I gave the folder, I needed to rename the folder, it is a good idea to keep things consistent! Alternatively you could just include the different folder path in the program configuration file, so it reflects the folder on the machine.
 
 You need to have the same *ssh* key available on all the machine, or set up additional *ssh* keys in the on-line *git* repository. This software can only work automatically, if a user name and password don't need to be entered.
 
