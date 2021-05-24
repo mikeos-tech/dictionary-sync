@@ -39,7 +39,7 @@ The above line is also included in my *.vimrc* file.  It means that when the **F
 
 ---
 
-## Setting up the synchronisation
+## Setting up the first computer
 
 Because of  *Linux* permissions you will need to use *sudo* or be logged on as *root* to run most of the commands I suggest.
 
@@ -197,6 +197,22 @@ It can be disabled using the command:
      sudo systemctl disable example.service
 
 ---
+## Setting up Subsequent Computers
 
+Setting up the first computer includes creating things like the local and remote *git* repositories and these are things that only need to be done once.  This means it is more straightforward to set up any other computers were you want to synchronise your files.
+
+---
+
+### 1. Pull down the onm-line Repository
+
+The first step in this process is to get a copy of the on-line *git* repository onto the additional machines you wish to use it on. *git* provides a command for this, that will bring down a copy ready for use. Because I called the on-line repository something different to the folder, I needed to rename the folder. Alternatively you could just include the different path in the program configuration file.
+
+You need to either be using the same *ssh* key on the machine you are adding it or set up additional *ssh* keys on the on-line *git* repository.
+
+The URL element of the command below needs to be replaced with the path you used at stage
+
+     git clone URL
+
+---
 This works for me and is here to be used and modified as required.  It probably isn't the best solution for this problem.  It is more a quick and dirty solution rather than something for wider distribution I'm open to suggestions on how it can be improved.
 
