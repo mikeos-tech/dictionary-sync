@@ -136,9 +136,13 @@ Add the path to the folder you created, that contains the local *git* repository
 
 ---
 
-10. The␣program␣can be run␣manually␣from␣the␣command␣line␣and␣if␣you␣do␣this␣you␣will␣need␣to␣keep␣a␣shell/terminalell␣running.␣Run␣it␣in␣the␣background␣is␣refered␣to␣as␣running␣it␣as␣a␣service. The program can be run from within a *Linux* terminal/shell and if you do that it will just continue to run, showing limited messages in the terminal when it does something.  
+10. It is possible to run the command within a *Linux* shell/terminal on each of the machines, only when you want to keep the files synchronised, but to do this you would need to remember to do it and would have a terminal open that wouldn't be usable just showing occasional messages when it did something.
 
-the command line, ate the unit file for the program to be run in the background as a service
+Running it as a service, is the term that is used to describe running it automatically in the background, so you need not be aware it is running.
+
+To run it as a service you need to create a unit file, in a specific folder and include some details that tell the computer where to find the file and give it instructions on running it.
+
+To create the unit file:
 
      sudo nano /etc/systemd/system/dic_sync.service
 
@@ -159,9 +163,9 @@ Paste the text below into it and save it:
 
 ---
 
-11. The program ran be run manually from the command line and if you do this you will need to keep a version of the shell running. Run it in the background is refered to as running it as a service., runing in the background you need to use the following comman
+11. Once you have created the unit file you can tell set it up to run automatically, every time the computer starts.
 
-Execute the following commands:
+To do this run the following commands:
 
      sudo systemctl daemon-reload
      sudo systemctl start  dic_sync.service
