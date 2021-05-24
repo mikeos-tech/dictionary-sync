@@ -6,7 +6,7 @@ I wanted to synchronise the *vim* personal dictionary so that it would be the sa
 
 Searching suggested that some use *Dropbox* to provide this service, but as I didn't wish to use it, I search for Open Source alternatives.
 
-There were a number of solutions that required the use of a GUI environment to set them up, but as I wanted to use it on a server, where I don't have a GUI installed, these weren't possible.  I found one command line option, which I experimented with, but could get to work.
+There were a number of solutions that required the use of a GUI environment to set them up, but as I wanted to use it on a server, where I don't have a GUI installed, these weren't possible. I found one command line option, which I experimented with, but could get to work. Open Source software is being developed all the time, so better developed and tested software may be also available.
 
 It occurred to me that *git* could be used for this purpose, but that I would need to provide the automation to make it work, which led to the development of  this application.
 
@@ -14,7 +14,7 @@ I wanted to:
 1. Push the dictionary up to the central repository every time the local file changed.
 2. Pull the dictionary down to the workstation every time the server version wasn't the same as the local version.
 
-It has worked for me (so far), though it hasn't been tested more widely.  It doesn't have a lot of dependencies, the c code is just standard functionality, without additional libraries and the rest is dependant on *git*.  You need to have *git* installed as it uses the *git* executable, rather than using *git* libraries.
+It has worked for me (so far), though it hasn't been tested more widely. It doesn't have a lot of dependencies, the c code is just standard functionality, without additional libraries and the rest is dependant on *git*.  You need to have *git* installed as it uses the *git* executable, rather than using *git* libraries.
 
 I currently have it running on *Ubuntu server* and two instances of *Kubuntu*.
 
@@ -31,7 +31,7 @@ In my *.vimrc* file I have the following settings that set the language for the 
      set spellfile=$HOME/.vim_spell/en.utf-8.add
      set spell
 
-*vim* keeps a text file containing the list of words, but uses that to build a binary version of the dictionary that it can read more efficiently.  The binary file has the extension *.spl*.  I use a *.gitignore* file within the repository, to ensure that only the text version of the dictionary is synchronised, so I have mapped a function key in *vim* that will regenerate the binary version of the dictionary when I press it. I explain the content of the *.gitignore* file later in the instructions.
+*vim* keeps a text file containing the list of words, but uses that to build a binary version of the dictionary that it can read more efficiently.  The binary file has the extension *.spl*. I use a *.gitignore* file within the repository, to ensure that only the text version of the dictionary is synchronised, so I have mapped a function key in *vim* that will regenerate the binary version of the dictionary when I press it. I explain the content of the *.gitignore* file later in the instructions.
 
      :map  <F4> :mkspell! ~/.vim_spell/en.utf-8.add
 
